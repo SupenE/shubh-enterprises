@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Materials Catalog | Shubh Enterprises</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.catalog-header{
+    padding:80px 10%;
+    text-align:center;
+    background:#f8f8f8;
+}
+
+.catalog-header h1{
+    margin-bottom:15px;
+}
+
+.search-container{
+    max-width:600px;
+    margin:30px auto;
+}
+
+#searchInput{
+    width:100%;
+    padding:15px;
+    font-size:16px;
+    border:2px solid #ddd;
+    border-radius:8px;
+    outline:none;
+}
+
+#searchInput:focus{
+    border-color:#f59e0b;
+}
+
+.catalog-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    padding:50px 10%;
+}
+
+.product-card{
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+}
+
+.product-image{
+    height:180px;
+    background:#ececec;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+}
+
+.product-info{
+    padding:20px;
+}
+
+.product-info h3{
+    margin-bottom:10px;
+}
+
+.product-category{
+    color:#f59e0b;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.no-results{
+    text-align:center;
+    padding:50px;
+    display:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="images/logo.png" alt="Shubh Enterprises">
+            <h2>Shubh Enterprises</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="catalog.html">Materials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+    </nav>
+</header>
+
+<section class="catalog-header">
+
+    <h1>Materials Catalog</h1>
+
+    <p>
+        Browse our range of housekeeping materials and hygiene products.
+    </p>
+
+    <div class="search-container">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+        >
+    </div>
+
+</section>
+
+<section class="catalog-grid" id="productContainer">
+</section>
+
+<div class="no-results" id="noResults">
+    <h3>No products found.</h3>
+</div>
+
+<footer>
+    <p>
+        © 2025 Shubh Enterprises | Jaipur, Rajasthan
+    </p>
+</footer>
+
+<script src="js/products.js"></script>
+
+<script>
+
+const container = document.getElementById("productContainer");
+const searchInput = document.getElementById("searchInput");
+const noResults = document.getElementById("noResults");
+
+function renderProducts(productList){
+
+    container.innerHTML = "";
+
+    if(productList.length === 0){
+        noResults.style.display = "block";
+        return;
+    }
+
+    noResults.style.display = "none";
+
+    productList.forEach(product => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+            <div class="product-image">
+                🧹
+            </div>
+
+            <div class="product-info">
+
+                <h3>${product.name}</h3>
+
+                <p class="product-category">
+                    ${product.category}
+                </p>
+
+                <p>
+                    High-quality housekeeping material supplied by
+                    Shubh Enterprises.
+                </p>
+
+            </div>
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+renderProducts(products);
+
+searchInput.addEventListener("keyup", () => {
+
+    const searchTerm =
+    searchInput.value.toLowerCase();
+
+    const filteredProducts =
+    products.filter(product =>
+
+        product.name.toLowerCase().includes(searchTerm) ||
+
+        product.category.toLowerCase().includes(searchTerm)
+
+    );
+
+    renderProducts(filteredProducts);
+
+});
+
+</script>
+
+</body>
+</html>
