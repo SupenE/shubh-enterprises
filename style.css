@@ -183,3 +183,36 @@ scroll-behavior:smooth;
 .card:hover{
     transform:translateY(-8px);
 }
+
+.menu-toggle{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+        background:none;
+        border:none;
+        color:white;
+        font-size:30px;
+        cursor:pointer;
+    }
+
+    .nav-links{
+        display:none;
+        width:100%;
+        flex-direction:column;
+        text-align:center;
+        margin-top:15px;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .navbar{
+        flex-wrap:wrap;
+    }
+
+}
