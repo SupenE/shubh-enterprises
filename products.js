@@ -8,7 +8,7 @@ category:"Cleaning Chemicals"
 {
 name:"Glass Cleaner",
 category:"Cleaning Chemicals"
-image: Glass-Cleaner.png
+image: "Glass-Cleaner.png"
 },
 
 {
